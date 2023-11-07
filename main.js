@@ -1,50 +1,109 @@
-// ___________________________varian with check value__________________________
-let arrTotalNum = [];
-let sum = 0;
+function getAge() {
+  let age = prompt("Введіть свій рік народження");
 
-alert("Hi ;) I can calculate the average of your three numbers");
+  if (age == false || age == null) {
+    alert("Шкода, що Ви не захотіли ввести свій рік народження, Бай бай!)");
+    return null;
+  } else if (isNaN(Number(age))) {
+    alert("Потрібно ввести саме рік Вашого народження");
+    return getAge();
+  } else if (age.length < 4 || age.length > 5) {
+    alert("Некоректний рік Вашого народження");
+    return getAge();
+  }
 
-let getNumFirst = Number(prompt("Enter the first number Please"));
-checkValue(getNumFirst);
-let getNumSecond = Number(prompt("Enter the second number!"));
-checkValue(getNumSecond);
-let getNumThird = Number(prompt("Enter the third number!"));
-checkValue(getNumThird);
+  let currentYear = new Date().getFullYear();
+  let ageUser = currentYear - age;
+  return ageUser;
+}
 
-function checkValue(num) {
-  if (!isNaN(num)) {
-    if (num == 0) {
-      alert("You must enter only the number Please!");
-      num = Number(prompt("Enter your number Please!"));
-      checkValue(num);
-    } else {
-      arrTotalNum.push(num);
-    }
+function getCity() {
+  let city = prompt("Введіть місто, в якому ти живеш");
+
+  let cityToCheck = city
+    ? Number(city)
+    : alert(
+        "Шкода, що Ви не захотіли ввести свое місто, в якому ти живеш, Бай бай!)"
+      );
+
+  if (!isNaN(cityToCheck)) {
+    alert("Потрібно ввести саме свое місто, в якому ти живеш");
+    return getCity();
+  } else if (city.length < 3) {
+    alert("Некоректне місто");
+    return getCity();
   } else {
-    alert("You must enter only the number Please!");
-    num = Number(prompt("Enter your number Please!"));
-    checkValue(num);
+    return city;
   }
 }
 
-for (let i = 0; i < arrTotalNum.length; i++) {
-  sum += arrTotalNum[i];
+function getSport() {
+  let sport = prompt("Введіть ваш улюблений вид спорту:");
+
+  let sportToCheck = sport
+    ? Number(sport)
+    : alert("Шкода, що ви не захотіли ввести свій улюблений вид спорту.");
+
+  if (!isNaN(sportToCheck)) {
+    alert("Потрібно ввести саме свій улюблений вид спорту");
+    return getSport();
+  } else if (sport.length < 3) {
+    alert("Некоректний вид спорту");
+    return getSport();
+  } else {
+    return sport;
+  }
 }
 
-let middleValue = sum / arrTotalNum.length;
+function app() {
+  alert("Це дуже крута смарт программа ! Спробуй !))");
 
-alert(
-  `Your middle the value equal ${middleValue}. From the numbers you entered ${arrTotalNum[0]}, ${arrTotalNum[1]}, ${arrTotalNum[2]}.`
-);
+  let messageAlert = "";
 
-// ___________________________simpler varian __________________________
+  let age = getAge();
+  if (age === null) return;
+  messageAlert += `Ваш вік: ${age}.\n`;
 
-// let getNumFirst = Number(prompt("Enter first number"));
-// let getNumSecond = Number(prompt("Enter second number"));
-// let getNumThird = Number(prompt("Enter third number"));
+  let city = getCity();
+  if (city === null) return;
 
-// let sum = getNumFirst + getNumSecond + getNumThird;
+  let cityLowerCase = city.toLowerCase();
+  if (
+    cityLowerCase == "київ" ||
+    cityLowerCase == "вашингтон" ||
+    cityLowerCase == "лондон"
+  ) {
+    let country = "";
+    if (cityLowerCase == "київ") {
+      country = "України";
+    } else if (cityLowerCase == "вашингтон") {
+      country = "США";
+    } else if (cityLowerCase == "лондон") {
+      country = "Великої Британії";
+    }
+    messageAlert += `Ти живеш у столиці: ${country}.\n`;
+  } else {
+    messageAlert += `Ти живеш у місті: ${city}.\n`;
+  }
 
-// let middleValue = sum / 3;
+  let sport = getSport();
+  if (sport === null) return;
+  let sportLowerCase = sport.toLowerCase();
 
-// alert(`middle value = ${middleValue}`);
+  let sportKings = {
+    карате: "Брюс Лі",
+    бокс: "Майк Тайсон",
+    шахмати: "Магнус Карлсен",
+  };
+
+  let sportKing = sportKings[sportLowerCase];
+  if (sportKing) {
+    messageAlert += `Круто! Хочеш стати як ${sportKing}?\n`;
+  } else {
+    messageAlert += `Жаль що ми не знаємо королів цього виду спорту як ${sportLowerCase}.\n`;
+  }
+
+  alert(messageAlert);
+}
+
+app();
