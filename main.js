@@ -1,26 +1,29 @@
-// Написати функцію, яка приймає 1 параметр. з тим, що передали перший раз і т. д. Все це із замиканнями, наприклад:
+// Це ladder (сходи) – об'єкт, який дозволяє підніматися вгору та спускатися:
 
-// sum(3) = 3
-// sum(5) = 8
-// sum(20) = 28
+let ladder = {
+  step: 0,
+  up: function () {
+    this.step++;
+    return this;
+  },
+  down: function () {
+    this.step--;
+    return this;
+  },
+  showStep: function () {
+    // показывает текущую ступеньку
+    // alert(this.step);
+    console.log(this.step);
+    return this;
+  },
+};
+// Тепер, якщо нам потрібно зробити кілька послідовних викликів, ми можемо виконати це так:
 
-/**
- *
- * @returns - returns the number added to the number
- */
-function getSum() {
-  let result = 0;
+// ladder.up();
+// ladder.up();
+// ladder.down();
+// ladder.showStep(); // 1
+// Змініть код методів up, down і showStep таким Таким чином, щоб їх виклик можна було зробити по ланцюжку, наприклад:
 
-  function increaseSum(num) {
-    result += num;
-    return result;
-  }
-
-  return increaseSum;
-}
-
-const sum = getSum();
-
-console.log(sum(3));
-console.log(sum(5));
-console.log(sum(20));
+ladder.up().up().down().showStep(); // 1
+// Такий підхід широко використовується в бібліотеках JavaScript.
