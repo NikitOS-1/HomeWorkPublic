@@ -34,14 +34,17 @@
 // // А скільки тепер коштує?
 // console.log("Price with sauce: “ + hamburger.calculatePrice());
 
-const STUFFING_CHEESE = { price: 10, calories: 20, name: "cheese" };
-const STUFFING_SALAD = { price: 20, calories: 5, name: "salad" };
-const STUFFING_POTATO = { price: 15, calories: 10, name: "potato" };
-
-const TOPPING_SPICE = { price: 15, calories: 0, name: "spice" };
-const TOPPING_MAYO = { price: 20, calories: 5, name: "mayo" };
-
 class Hamburger {
+  static SIZE_SMALL = { price: 50, calories: 20, name: "small" };
+  static SIZE_LARGE = { price: 100, calories: 40, name: "large" };
+
+  static STUFFING_CHEESE = { price: 10, calories: 20, name: "cheese" };
+  static STUFFING_SALAD = { price: 20, calories: 5, name: "salad" };
+  static STUFFING_POTATO = { price: 15, calories: 10, name: "potato" };
+
+  static TOPPING_SPICE = { price: 15, calories: 0, name: "spice" };
+  static TOPPING_MAYO = { price: 20, calories: 5, name: "mayo" };
+
   constructor(size, stuffing) {
     this.size = size;
     this.stuffing = stuffing;
@@ -71,13 +74,15 @@ class Hamburger {
   }
 }
 
-// Приклад роботи коду:
+// Приклад роботи коду
+const hamburger = new Hamburger(
+  Hamburger.SIZE_SMALL,
+  Hamburger.STUFFING_CHEESE
+);
 
-const hamburger = new Hamburger(SIZE_SMALL, STUFFING_CHEESE);
-
-hamburger.addTopping(TOPPING_MAYO);
+hamburger.addTopping(Hamburger.TOPPING_MAYO);
 console.log("Calories: " + hamburger.calculate());
 console.log("Price: " + hamburger.calculatePrice());
 
-hamburger.addTopping(TOPPING_SPICE);
+hamburger.addTopping(Hamburger.TOPPING_SPICE);
 console.log("Price with spice: " + hamburger.calculatePrice());
