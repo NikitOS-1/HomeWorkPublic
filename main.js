@@ -1,79 +1,83 @@
-// 1. Створити клас Людина.
-// Властивості:
-// імʼя;
-// стать.
-// Методи:
-// конструктор, який приймає два параметри: імʼя та стать.
+// Мережа фастфудів пропонує кілька видів гамбургерів:
 
-// 2. Створити клас Квартира.
-// Властивості:
-// конструктор не потрібен;
-// масив жителів, який при створенні пустий.
-// Методи:
-// додати жителя - метод повинен приймати екземпляр класу Людина, та додавати до масиву жителів.
+// маленький (50 тугриків, 20 калорій);
+// великий (100 тугриків, 40 калорій).
+// Гамбургер може бути з одним із декількох видів начинок:
 
-// 3. Створити клас Будинок.
-// Властивості:
-// масив квартир, який при створенні пустий;
-// максимальна кількість квартир.
-// Методи:
-// конструктор, який приймає один параметр: максимальну кількість квартир;
-// додати квартиру - метод повинен приймати екземпляр класу Квартира, перевіряти, чи не буде кількість перевищувати максимальну кількість квартир, і якщо це так, додати квартиру, в іншому випадку виводить у консоль відповідне повідомлення.
+// сиром (+ 10 тугриків, + 20 калорій);
+// салатом (+ 20 тугриків, + 5 калорій);
+// картоплею (+ 15 тугриків, + 10 калорій).
+// Можна додати добавки:
 
-// В якості демонстраціїї створити:
-// декілька екземплярів класу Людина;
-// декілька екземплярів класу Квартира;
-// додадити екземпляри класу Людина до екземплярів класу Квартира;
-// екземпляр класу Будинок;
-// додадити екземпляри класу Квартира до екземплярів класу Будинок.
+// посипати приправою (+15 тугриків, 0 калорій) - полити майонезом (+ 20 тугриків, +5 калорій).
+// Напишіть програму, яка розраховує вартість та калорійність гамбургера. Використовуйте ООП підхід.
 
-class Person {
-  constructor(name, gender) {
-    this.name = name;
-    this.gender = gender;
+// (підказка: потрібен клас Гамбургер, константи, методи для вибору опцій та розрахунку потрібних величин)
+
+// Приклад роботи коду:
+
+// // маленький гамбургер з начинкою з сиру
+// var hamburger = new Hamburger(Hamburger .SIZE_SMALL, Hamburger.STUFFING_CHEESE);
+
+// // добавка з майонезу
+// hamburger.addTopping(Hamburger.TOPPING_MAYO);
+
+// // запитаємо скільки там калорій
+// console.log(“Calories: “ + hamburger.calculate ());
+
+// // скільки коштує
+// console.log("Price: “ + hamburger.calculatePrice());
+
+// // я тут передумав і вирішив додати ще приправу
+// hamburger.addTopping(Hamburger .TOPPING_SAUCE);
+
+// // А скільки тепер коштує?
+// console.log("Price with sauce: “ + hamburger.calculatePrice());
+
+const STUFFING_CHEESE = { price: 10, calories: 20, name: "cheese" };
+const STUFFING_SALAD = { price: 20, calories: 5, name: "salad" };
+const STUFFING_POTATO = { price: 15, calories: 10, name: "potato" };
+
+const TOPPING_SPICE = { price: 15, calories: 0, name: "spice" };
+const TOPPING_MAYO = { price: 20, calories: 5, name: "mayo" };
+
+class Hamburger {
+  constructor(size, stuffing) {
+    this.size = size;
+    this.stuffing = stuffing;
+    this.toppings = [];
+  }
+
+  addTopping(topping) {
+    this.toppings.push(topping);
+  }
+
+  calculate() {
+    const totalCalories =
+      this.size.calories +
+      this.stuffing.calories +
+      this.toppings.reduce((acc, topping) => acc + topping.calories, 0);
+
+    return totalCalories;
+  }
+
+  calculatePrice() {
+    const totalPrice =
+      this.size.price +
+      this.stuffing.price +
+      this.toppings.reduce((acc, topping) => acc + topping.price, 0);
+
+    return totalPrice;
   }
 }
 
-class Apartament {
-  constructor() {
-    this.residents = [];
-  }
+// Приклад роботи коду:
 
-  addResident(person) {
-    this.residents.push(person);
-  }
-}
+const hamburger = new Hamburger(SIZE_SMALL, STUFFING_CHEESE);
 
-class House {
-  constructor(maxApartaments) {
-    this.apartaments = [];
-    this.maxApartaments = maxApartaments;
-  }
+hamburger.addTopping(TOPPING_MAYO);
+console.log("Calories: " + hamburger.calculate());
+console.log("Price: " + hamburger.calculatePrice());
 
-  addApartament(apartament) {
-    if (this.apartaments.length < this.maxApartaments) {
-      this.apartaments.push(apartament);
-    } else {
-      console.log("Warning 'Max lenght apartaments'");
-    }
-  }
-}
-
-// декілька екземплярів класу Людина;
-const person1 = new Person("Nikita", "male");
-const person2 = new Person("Alexandra", "female");
-
-// декілька екземплярів класу Квартира;
-const apartament1 = new Apartament();
-const apartament2 = new Apartament();
-
-// додадити екземпляри класу Людина до екземплярів класу Квартира;
-apartament1.addResident(person1);
-apartament2.addResident(person2);
-
-// екземпляр класу Будинок;
-const house = new House(10);
-
-// додадити екземпляри класу Квартира до екземплярів класу Будинок.
-house.addApartament(apartament1);
-house.addApartament(apartament2);
+hamburger.addTopping(TOPPING_SPICE);
+console.log("Price with spice: " + hamburger.calculatePrice());
