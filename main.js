@@ -1,88 +1,24 @@
-// Мережа фастфудів пропонує кілька видів гамбургерів:
+// Вивести таблицю 10 × 10, заповнену числами від 1 до 100 (таблиця створюється динамічно)
 
-// маленький (50 тугриків, 20 калорій);
-// великий (100 тугриків, 40 калорій).
-// Гамбургер може бути з одним із декількох видів начинок:
+document.addEventListener("DOMContentLoaded", function () {
+  let table = document.createElement("table");
+  let headerRow = table.insertRow();
 
-// сиром (+ 10 тугриків, + 20 калорій);
-// салатом (+ 20 тугриків, + 5 калорій);
-// картоплею (+ 15 тугриків, + 10 калорій).
-// Можна додати добавки:
-
-// посипати приправою (+15 тугриків, 0 калорій) - полити майонезом (+ 20 тугриків, +5 калорій).
-// Напишіть програму, яка розраховує вартість та калорійність гамбургера. Використовуйте ООП підхід.
-
-// (підказка: потрібен клас Гамбургер, константи, методи для вибору опцій та розрахунку потрібних величин)
-
-// Приклад роботи коду:
-
-// // маленький гамбургер з начинкою з сиру
-// var hamburger = new Hamburger(Hamburger .SIZE_SMALL, Hamburger.STUFFING_CHEESE);
-
-// // добавка з майонезу
-// hamburger.addTopping(Hamburger.TOPPING_MAYO);
-
-// // запитаємо скільки там калорій
-// console.log(“Calories: “ + hamburger.calculate ());
-
-// // скільки коштує
-// console.log("Price: “ + hamburger.calculatePrice());
-
-// // я тут передумав і вирішив додати ще приправу
-// hamburger.addTopping(Hamburger .TOPPING_SAUCE);
-
-// // А скільки тепер коштує?
-// console.log("Price with sauce: “ + hamburger.calculatePrice());
-
-class Hamburger {
-  static SIZE_SMALL = { price: 50, calories: 20, name: "small" };
-  static SIZE_LARGE = { price: 100, calories: 40, name: "large" };
-
-  static STUFFING_CHEESE = { price: 10, calories: 20, name: "cheese" };
-  static STUFFING_SALAD = { price: 20, calories: 5, name: "salad" };
-  static STUFFING_POTATO = { price: 15, calories: 10, name: "potato" };
-
-  static TOPPING_SPICE = { price: 15, calories: 0, name: "spice" };
-  static TOPPING_MAYO = { price: 20, calories: 5, name: "mayo" };
-
-  constructor(size, stuffing) {
-    this.size = size;
-    this.stuffing = stuffing;
-    this.toppings = [];
+  for (let i = 1; i <= 10; i++) {
+    let th = document.createElement("th");
+    th.textContent = "Column " + i;
+    headerRow.appendChild(th);
   }
 
-  addTopping(topping) {
-    this.toppings.push(topping);
+  for (let i = 1; i <= 10; i++) {
+    let row = table.insertRow();
+
+    for (let j = 1; j <= 10; j++) {
+      let cell = row.insertCell();
+      let number = (i - 1) * 10 + j;
+      cell.textContent = number;
+    }
   }
 
-  calculate() {
-    const totalCalories =
-      this.size.calories +
-      this.stuffing.calories +
-      this.toppings.reduce((acc, topping) => acc + topping.calories, 0);
-
-    return totalCalories;
-  }
-
-  calculatePrice() {
-    const totalPrice =
-      this.size.price +
-      this.stuffing.price +
-      this.toppings.reduce((acc, topping) => acc + topping.price, 0);
-
-    return totalPrice;
-  }
-}
-
-// Приклад роботи коду
-const hamburger = new Hamburger(
-  Hamburger.SIZE_SMALL,
-  Hamburger.STUFFING_CHEESE
-);
-
-hamburger.addTopping(Hamburger.TOPPING_MAYO);
-console.log("Calories: " + hamburger.calculate());
-console.log("Price: " + hamburger.calculatePrice());
-
-hamburger.addTopping(Hamburger.TOPPING_SPICE);
-console.log("Price with spice: " + hamburger.calculatePrice());
+  document.body.appendChild(table);
+});
