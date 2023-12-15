@@ -1,24 +1,28 @@
-// Вивести таблицю 10 × 10, заповнену числами від 1 до 100 (таблиця створюється динамічно)
+let currentIndex = 0;
+let totalImages = document.querySelectorAll(".slider-image").length;
 
-document.addEventListener("DOMContentLoaded", function () {
-  let table = document.createElement("table");
-  let headerRow = table.insertRow();
+function showImage(index) {
+  let translateValue = -index * 100 + "%";
+  currentIndex = index;
 
-  for (let i = 1; i <= 10; i++) {
-    let th = document.createElement("th");
-    th.textContent = "Column " + i;
-    headerRow.appendChild(th);
+  document.getElementById("image-slider").style.transform =
+    "translateX(" + translateValue + ")";
+  document.getElementById("prev").style.display =
+    currentIndex === 0 ? "none" : "block";
+  document.getElementById("next").style.display =
+    currentIndex === totalImages - 1 ? "none" : "block";
+}
+
+function nextImage() {
+  if (currentIndex < totalImages - 1) {
+    showImage(currentIndex + 1);
   }
+}
 
-  for (let i = 1; i <= 10; i++) {
-    let row = table.insertRow();
-
-    for (let j = 1; j <= 10; j++) {
-      let cell = row.insertCell();
-      let number = (i - 1) * 10 + j;
-      cell.textContent = number;
-    }
+function prevImage() {
+  if (currentIndex > 0) {
+    showImage(currentIndex - 1);
   }
+}
 
-  document.body.appendChild(table);
-});
+showImage(0);

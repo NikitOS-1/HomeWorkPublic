@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HW 12</title>
-    <style>
-        table {
-          border-collapse: collapse;
-          width: 100%;
-        }
-    
-        table, th, td {
-          border: 1px solid #ddd;
-        }
-    
-        th, td {
-          padding: 8px;
-          text-align: center;
-        }
-    
-        th {
-          background-color: #f2f2f2;
-        }
-      </style>
+    <title>HW 13(Slider)</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
+
 <body>
-    <script src="./main.js">
-    </script>
+    <div id="slider-container">
+        <div id="image-slider">
+            <img class="slider-image" src="./assets/img1.jpg" alt="Image 1">
+            <img class="slider-image" src="./assets/img2.jpg" alt="Image 2">
+            <img class="slider-image" src="./assets/img3.jpg" alt="Image 3">
+        </div>
+        <button id="prev" onclick="prevImage()">
+            <span class="material-symbols-outlined">
+                arrow_back_ios_new
+            </span>
+        </button>
+        <button id="next" onclick="nextImage()">
+            <span class="material-symbols-outlined">
+                arrow_forward_ios
+            </span>
+        </button>
+        <script src="./main.js"></script>
+    </div>
 </body>
+
 </html>
