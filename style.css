@@ -1,42 +1,78 @@
-#slider-container {
-    position: relative;
-    width: 400px;
-    margin: auto;
-    overflow: hidden;
-}
-
-#image-slider {
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    justify-content: center;
+    align-items: center;
 }
 
-.slider-image {
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
     width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
+.radio-group,
+.checkbox-group {
 
-#prev,
-#next {
-    background-color: rgba(255, 255, 255, 0);
-    color: rgba(0, 0, 255, 0.56);
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
     border: none;
-    color: none;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    border-radius: 4px;
     cursor: pointer;
 }
 
-
-#prev:hover,
-#next:hover {
-    color: blue;
+button:hover {
+    background-color: #45a049;
 }
 
-#prev {
-    left: 10px;
+table {
+    display: none;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-#next {
-    right: 10px;
+table,
+th,
+td {
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
 }
