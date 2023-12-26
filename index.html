@@ -4,67 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HW 13</title>
+    <title>HW14 (Todo App)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-    <div class="container">
-        <form id="registrationForm">
-            <div class="form-group">
-                <label for="firstName">Ім'я:</label>
-                <input type="text" id="firstName" name="firstName" required>
-            </div>
-
-            <div class="form-group">
-                <label for="lastName">Прізвище:</label>
-                <input type="text" id="lastName" name="lastName" required>
-            </div>
-
-            <div class="form-group">
-                <label for="dob">Дата народження:</label>
-                <input type="text" id="dob" name="dob" placeholder="dd/mm/yyyy" required>
-            </div>
-
-            <div class="form-group">
-                <label>Стать:</label>
-                <div class="radio-group">
-                    <input type="radio" id="male" name="gender" value="male" required>
-                    <label for="male">Чоловіча</label>
-                    <input type="radio" id="female" name="gender" value="female" required>
-                    <label for="female">Жіноча</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="city">Місто:</label>
-                <select id="city" name="city" required>
-                    <option value="lviv">Львів</option>
-                    <option value="kyiv">Київ</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="address">Адреса:</label>
-                <textarea id="address" name="address" rows="4" required></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Мови, якими володієте:</label>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="lang1" name="languages" value="ukr">
-                    <label for="lang1">Українська</label>
-                    <input type="checkbox" id="lang2" name="languages" value="eng">
-                    <label for="lang2">Англійська</label>
-                </div>
-            </div>
-
-            <button type="button" onclick="submitForm()">Зберегти</button>
-        </form>
-
-        <table id="dataTable">
-        </table>
+    <div id="todo-list" class="container">
+        <h2 class="mt-4 mb-3">Todo List</h2>
+        <input type="text" id="task" class="form-control mb-2" placeholder="Add a new task">
+        <button class="btn btn-primary mb-2" onclick="addTask()">Add Task</button>
+        <ul id="tasks" class="list-group"></ul>
     </div>
 
     <script src="main.js"></script>
