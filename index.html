@@ -4,18 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HW14 (Todo App)</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Погода у місті</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="todo-list" class="container">
-        <h2 class="mt-4 mb-3">Todo List</h2>
-        <input type="text" id="task" class="form-control mb-2" placeholder="Add a new task">
-        <button class="btn btn-primary mb-2" onclick="addTask()">Add Task</button>
-        <ul id="tasks" class="list-group"></ul>
+
+    <div id="weather-container">
+        <div>
+            <label for="city-input">Введіть назву міста: </label>
+            <input type="text" id="city-input" placeholder="Введіть місто">
+            <button id="get-weather-btn">Отримати погоду</button>
+        </div>
+        <h3>Погода у місті <span id="city-name"></span></h3>
+        <div id="weather-info">
+            <p>Температура: <span id="temperature"></span> &deg;C</p>
+            <p>Тиск: <span id="pressure"></span> hPa</p>
+            <p>Опис: <span id="description"></span></p>
+            <p>Вологість: <span id="humidity"></span>%</p>
+            <p>Швидкість вітру: <span id="wind-speed"></span> м/с</p>
+            <p>Напрям вітру: <span id="wind-direction"></span> &deg;</p>
+            <img id="weather-icon" src="" alt="Погодний значок">
+        </div>
     </div>
 
     <script src="main.js"></script>

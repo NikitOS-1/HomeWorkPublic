@@ -1,128 +1,49 @@
 document.addEventListener("DOMContentLoaded", function () {
-  displayTasks();
+  const cityNameElement = document.getElementById("city-name");
+  const temperatureElement = document.getElementById("temperature");
+  const pressureElement = document.getElementById("pressure");
+  const descriptionElement = document.getElementById("description");
+  const humidityElement = document.getElementById("humidity");
+  const windSpeedElement = document.getElementById("wind-speed");
+  const windDirectionElement = document.getElementById("wind-direction");
+  const weatherIconElement = document.getElementById("weather-icon");
+  const cityInput = document.getElementById("city-input");
+  const getWeatherBtn = document.getElementById("get-weather-btn");
+
+  getWeatherBtn.addEventListener("click", function () {
+    const cityName = cityInput.value.trim();
+    if (cityName !== "") {
+      const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&APPID=5d066958a60d315387d9492393935c19`;
+      getWeatherData(apiUrl);
+    } else {
+      alert("Будь ласка, введіть назву міста.");
+    }
+  });
+
+  function getWeatherData(url) {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          const data = JSON.parse(xhr.responseText);
+          displayWeatherData(data);
+        } else {
+          alert("Помилка отримання даних про погоду.");
+        }
+      }
+    };
+    xhr.send();
+  }
+
+  function displayWeatherData(data) {
+    cityNameElement.textContent = data.name;
+    temperatureElement.textContent = data.main.temp;
+    pressureElement.textContent = data.main.pressure;
+    descriptionElement.textContent = data.weather[0].description;
+    humidityElement.textContent = data.main.humidity;
+    windSpeedElement.textContent = data.wind.speed;
+    windDirectionElement.textContent = data.wind.deg;
+    weatherIconElement.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+  }
 });
-
-function addTask() {
-  let taskInput = document.getElementById("task");
-  let task = taskInput.value.trim();
-
-  if (task === "") {
-    alert("Please enter a task.");
-    return;
-  }
-
-  let tasks = getTasksFromLocalStorage();
-
-  tasks.push({ text: task, completed: false });
-
-  saveTasksToLocalStorage(tasks);
-
-  taskInput.value = "";
-
-  displayTasks();
-}
-
-function editTask(index) {
-  let tasks = getTasksFromLocalStorage();
-  let updatedTask = prompt("Edit task:", tasks[index].text);
-
-  if (updatedTask !== null) {
-    tasks[index].text = updatedTask;
-
-    saveTasksToLocalStorage(tasks);
-
-    displayTasks();
-  }
-}
-
-function deleteTask(index) {
-  let tasks = getTasksFromLocalStorage();
-  let confirmDelete = confirm("Are you sure you want to delete this task?");
-
-  if (confirmDelete) {
-    tasks.splice(index, 1);
-
-    saveTasksToLocalStorage(tasks);
-
-    displayTasks();
-  }
-}
-
-function toggleTask(index) {
-  let tasks = getTasksFromLocalStorage();
-
-  tasks[index].completed = !tasks[index].completed;
-
-  saveTasksToLocalStorage(tasks);
-
-  displayTasks();
-}
-
-function getTasksFromLocalStorage() {
-  let tasksJson = localStorage.getItem("tasks");
-  return tasksJson ? JSON.parse(tasksJson) : [];
-}
-
-function saveTasksToLocalStorage(tasks) {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-}
-
-function displayTasks() {
-  let tasks = getTasksFromLocalStorage();
-  let tasksList = document.getElementById("tasks");
-
-  tasksList.innerHTML = "";
-
-  for (let i = 0; i < tasks.length; i++) {
-    let li = document.createElement("li");
-    li.className =
-      "list-group-item d-flex justify-content-between align-items-center";
-
-    let checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.checked = tasks[i].completed;
-    checkbox.addEventListener(
-      "change",
-      (function (index) {
-        return function () {
-          toggleTask(index);
-        };
-      })(i)
-    );
-
-    let taskText = document.createElement("span");
-    taskText.textContent = tasks[i].text;
-    taskText.style.textDecoration = tasks[i].completed
-      ? "line-through"
-      : "none";
-
-    let editButton = document.createElement("button");
-    editButton.className = "btn btn-warning btn-sm";
-    editButton.textContent = "Edit";
-    editButton.onclick = (function (index) {
-      return function () {
-        editTask(index);
-      };
-    })(i);
-
-    let deleteButton = document.createElement("button");
-    deleteButton.className = "btn btn-danger btn-sm";
-    deleteButton.textContent = "Delete";
-    deleteButton.onclick = (function (index) {
-      return function () {
-        deleteTask(index);
-      };
-    })(i);
-
-    li.appendChild(checkbox);
-    li.appendChild(taskText);
-    li.appendChild(editButton);
-    li.appendChild(deleteButton);
-
-    tasksList.appendChild(li);
-  }
-}
-
-function loadTasks() {
-  displayTasks();
-}
