@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Пошук поста та коментарів</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Погода у місті</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+  <body>
+    <div id="search-container">
+      <label for="postIdInput">Введіть ID поста (1-100): </label>
+      <input type="number" id="postIdInput" min="1" max="100" />
+      <button id="searchPostBtn">Знайти пост</button>
+    </div>
 
-<body>
-
-    <div id="weather-container">
-        <div>
-            <label for="city-input">Введіть назву міста: </label>
-            <input type="text" id="city-input" placeholder="Введіть місто">
-            <button id="get-weather-btn">Отримати погоду</button>
-        </div>
-        <h3>Погода у місті <span id="city-name"></span></h3>
-        <div id="weather-info">
-            <p>Температура: <span id="temperature"></span> &deg;C</p>
-            <p>Тиск: <span id="pressure"></span> hPa</p>
-            <p>Опис: <span id="description"></span></p>
-            <p>Вологість: <span id="humidity"></span>%</p>
-            <p>Швидкість вітру: <span id="wind-speed"></span> м/с</p>
-            <p>Напрям вітру: <span id="wind-direction"></span> &deg;</p>
-            <img id="weather-icon" src="" alt="Погодний значок">
-        </div>
+    <div id="post-container" style="display: none">
+      <h2>Пост</h2>
+      <div id="post-info"></div>
+      <button id="getCommentsBtn">Отримати коментарі</button>
+      <div id="comments-container"></div>
     </div>
 
     <script src="main.js"></script>
-</body>
-
+  </body>
 </html>
