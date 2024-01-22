@@ -1,0 +1,27 @@
+body {
+    padding: 20px;
+}
+
+#app {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+input {
+    width: 500px;
+    height: 50px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+button {
+    width: 500px;
+    height: 50px;
+    background-color: aquamarine;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+}
