@@ -1,3 +1,14 @@
+import { Smile } from "./components/Smile/Smile";
+
 export function App() {
-  return <>App</>;
+  return (
+    <>
+      <Smile />
+      <Smile />
+      <Smile />
+      <Smile />
+      <div>Show result</div>
+      {1}
+    </>
+  );
 }
