@@ -1,12 +1,10 @@
-import { useState } from "react";
+import { Container, Count, SmileIcon } from "./styled";
 
-export const Smile = ({ src }) => {
-  const [count, setCount] = useState(0);
-
+export const Smile = ({ id, name, count, handleClick }) => {
   return (
-    <div>
-      <img src="#" alt="smile" onClick={() => setCount((prev) => prev + 1)} />
-      <div>{count}</div>
-    </div>
+    <Container onClick={() => handleClick(id)}>
+      <SmileIcon>{name}</SmileIcon>
+      <Count>{count}</Count>
+    </Container>
   );
 };
