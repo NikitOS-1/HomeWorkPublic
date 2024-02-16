@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  function Login() {
+    return <div>Login</div>;
+  }
+  function About() {
+    return <div>About</div>;
+  }
+  function Contact() {
+    return <div>Contact</div>;
+  }
+
+  const componentsMap = new Map([
+    ["Login", <Login />],
+    ["About", <About />],
+    ["Contact", <Contact />],
+    ["Contact", <Contact />],
+    ["Contact", <Contact />],
+    ["Con2tact", <Contact />],
+    ["Contact", <Contact />],
+    ["Conta4ct", <Contact />],
+    ["Contact3", <Contact />],
+  ]);
+  const [currentComponentKey, setCurrentComponentKey] = useState("Login");
+
+  const goToNextPage = () => {
+    const keys = Array.from(componentsMap.keys());
+    const currentIndex = keys.indexOf(currentComponentKey);
+    const nextIndex = (currentIndex + 1) % keys.length;
+    setCurrentComponentKey(keys[nextIndex]);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      {componentsMap.get(currentComponentKey)}
+      <button onClick={goToNextPage}>Next</button>
+    </div>
+  );
 }
 
-export default App
+export default App;
