@@ -1,11 +1,12 @@
+import React from 'react'
 import './button.css'
 
 interface ButtonProps {
-    action?: () => void
+    action: (e: React.MouseEvent) => void
 }
 
 export const Button = ({ action }: ButtonProps) => {
     return (
-        <div className="button" onClick={() => action}>Add</div>
+        <div className="button" onClick={(e) => action(e)}>Add</div>
     )
 }

@@ -1,14 +1,11 @@
 .tabs {
     display: flex;
+    gap: 2px;
     width: 100%;
-    margin: 0px;
-    padding: 0px;
-    border: 1px solid black;
 }
 
 .tabs__item {
-    margin: 2px;
-    width: 100px;
+    width: 50%;
     height: 40px;
     border: 1px solid rgb(163, 193, 248);
     border-radius: 10px;
@@ -17,7 +14,6 @@
     justify-content: center;
     color: cornflowerblue;
     font-weight: bold;
-
 }
 
 .tabs__item:hover {

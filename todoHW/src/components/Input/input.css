@@ -1,6 +1,5 @@
 .input {
-    margin: 2px;
-    width: 200px;
+    width: 70%;
     height: 40px;
     border: 1px solid rgb(163, 193, 248);
     border-radius: 10px;
@@ -9,6 +8,11 @@
     justify-content: center;
     color: cornflowerblue;
     font-weight: bold;
+    padding-left: 10px;
+}
+
+.input::placeholder {
+    color: cornflowerblue;
 }
 
 .input:hover {
