@@ -6,11 +6,13 @@ import { Tabs } from "./components/Tabs/Tabs"
 export const App = () => {
   const TABS = ['active', 'completed']
   const [tabId, setTabId] = useState<string>('active')
+  const [text, setText] = useState<string>('')
+
 
   return (
     <div className="container">
       <div className="input__container">
-        <Input />
+        <Input value={text} onChange={setText} />
         <Button />
       </div>
       <div className="">

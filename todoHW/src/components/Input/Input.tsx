@@ -1,3 +1,11 @@
-export const Input = () => {
-  return <div>Input</div>;
+import './input.css'
+
+interface InputProps {
+  value: string
+  onChange: (e: string) => void
+}
+
+export const Input = ({ onChange, value }: InputProps) => {
+
+  return <input className='input' onChange={(e) => onChange(e.target.value)} value={value} />
 };
