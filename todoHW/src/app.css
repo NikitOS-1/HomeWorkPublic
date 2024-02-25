@@ -93,3 +93,8 @@ h1 {
     background-color: rgba(100, 148, 237, 0.337);
     cursor: pointer;
 }
+
+.task__item span {
+    overflow: auto;
+    width: 200px;
+}
