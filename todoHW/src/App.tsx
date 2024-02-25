@@ -7,7 +7,6 @@ export const App = () => {
   const TABS = ['active', 'completed']
   const [tabId, setTabId] = useState<string>('active')
 
-
   return (
     <div className="container">
       <div className="input__container">

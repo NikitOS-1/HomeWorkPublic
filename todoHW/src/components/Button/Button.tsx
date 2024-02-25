@@ -1,5 +1,11 @@
-export const Button = () => {
+import './button.css'
+
+interface ButtonProps {
+    action?: () => void
+}
+
+export const Button = ({ action }: ButtonProps) => {
     return (
-        <div>Button</div>
+        <div className="button" onClick={() => action}>Add</div>
     )
 }
