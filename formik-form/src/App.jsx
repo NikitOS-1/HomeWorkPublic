@@ -14,12 +14,18 @@ const validationSchema = Yup.object().shape({
     .required("Телефон є обов'язковим для заповнення"),
 });
 
+const initialValues = {
+  name: "",
+  email: "",
+  phone: "",
+};
+
 const App = () => {
   return (
     <div>
       <h1>Форма</h1>
       <Formik
-        initialValues={{ name: "", email: "", phone: "" }}
+        initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
