@@ -1,63 +1,97 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import React, { useState, useEffect } from "react"
+import axios from "axios"
 
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required("Ім'я є обов'язковим для заповнення"),
-  email: Yup.string()
-    .email("Невірний формат електронної пошти")
-    .required("Електронна пошта є обов'язковою для заповнення"),
-  phone: Yup.string()
-    .matches(/^\d+$/, "Тільки цифри допускаються")
-    .min(12, "Телефон повинен містити 12 цифр")
-    .max(12, "Телефон повинен містити 12 цифр")
-    .required("Телефон є обов'язковим для заповнення"),
-});
+const Contacts = () => {
+  const [contacts, setContacts] = useState([])
+  const [showForm, setShowForm] = useState(false)
+  const [formData, setFormData] = useState({ name: "", surname: "", phone: "" })
 
-const initialValues = {
-  name: "",
-  email: "",
-  phone: "",
-};
-//
-const App = () => {
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
+      .then((response) => {
+        setContacts(response.data)
+      })
+      .catch((error) => {
+        console.error("Error fetching:", error)
+      })
+  }, [])
+
+  const handleDelete = (id) => {
+    const updatedContacts = contacts.filter((contact) => contact.id !== id)
+    setContacts(updatedContacts)
+  }
+
+  const handleFormToggle = () => {
+    setShowForm(!showForm)
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setContacts([...contacts, formData])
+    setFormData({ name: "", surname: "", phone: "" })
+    setShowForm(false)
+  }
+
   return (
     <div>
-      <h1>Форма</h1>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}>
-        {({ isSubmitting }) => (
-          <Form>
-            <div>
-              <label htmlFor='name'>Ім'я</label>
-              <Field type='text' name='name' />
-              <ErrorMessage name='name' component='div' />
-            </div>
-            <div>
-              <label htmlFor='email'>Електронна пошта</label>
-              <Field type='email' name='email' />
-              <ErrorMessage name='email' component='div' />
-            </div>
-            <div>
-              <label htmlFor='phone'>Телефон</label>
-              <Field type='tel' name='phone' />
-              <ErrorMessage name='phone' component='div' />
-            </div>
-            <button type='submit' disabled={isSubmitting}>
-              Відправити
-            </button>
-          </Form>
-        )}
-      </Formik>
+      <h1>Contacts</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Ім'я</th>
+            <th>Прізвище</th>
+            <th>Телефон</th>
+            <th>Дії</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contacts.map((contact) => (
+            <tr key={contact.id}>
+              <td>{contact.name}</td>
+              <td>{contact.username}</td>
+              <td>{contact.phone}</td>
+              <td>
+                <button onClick={() => handleDelete(contact.id)}>Видалити</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <button onClick={handleFormToggle}>{showForm ? "Скасувати" : "Додати контакт"}</button>
+      {showForm && (
+        <form onSubmit={handleSubmit}>
+          <input
+            type='text'
+            name='name'
+            placeholder="Ім'я"
+            value={formData.name}
+            onChange={handleInputChange}
+          />
+          <input
+            type='text'
+            name='surname'
+            placeholder='Прізвище'
+            value={formData.surname}
+            onChange={handleInputChange}
+          />
+          <input
+            type='text'
+            name='phone'
+            placeholder='Телефон'
+            value={formData.phone}
+            onChange={handleInputChange}
+          />
+          <button type='submit'>Зберегти</button>
+        </form>
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default Contacts
