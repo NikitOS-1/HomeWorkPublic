@@ -45,7 +45,7 @@ const Contacts = () => {
         <thead>
           <tr>
             <th>Ім'я</th>
-            <th>Прізвище</th>
+            <th>Прізвищ</th>
             <th>Телефон</th>
             <th>Дії</th>
           </tr>
