@@ -97,6 +97,7 @@
         .like {
             display: flex;
 
+
             .normalLike {
                 width: 21px;
                 height: 21px;
@@ -110,6 +111,8 @@
             }
 
             &:hover {
+                cursor: pointer;
+
                 .hoverLike {
                     display: block;
                 }
@@ -145,6 +148,8 @@
             }
 
             &:hover {
+                cursor: pointer;
+
                 .shareHover {
                     display: block;
                 }

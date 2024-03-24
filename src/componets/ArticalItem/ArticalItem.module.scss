@@ -55,6 +55,10 @@
             .like {
                 display: flex;
 
+                &:hover {
+                    cursor: pointer;
+                }
+
                 .unLikeIcon {
                     width: 21px;
                     height: 21px;
@@ -88,10 +92,15 @@
             .save {
                 display: flex;
 
+                &:hover {
+                    cursor: pointer;
+                }
+
                 .saveNormal {
                     width: 21px;
                     height: 21px;
                     display: block;
+
                 }
 
                 .saveHover {
@@ -113,6 +122,10 @@
 
             .share {
                 display: flex;
+
+                &:hover {
+                    cursor: pointer;
+                }
 
                 .shareNormal {
                     width: 21px;
