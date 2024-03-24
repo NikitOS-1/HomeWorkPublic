@@ -1,0 +1,30 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .links {
+        margin: 25px 0;
+
+        a {
+            margin: 17px;
+            text-decoration: none;
+
+            img {
+                width: 24px;
+                height: 24px;
+
+                &:hover {
+                    filter: opacity(50%);
+                    transition: 0.2s;
+                }
+            }
+        }
+    }
+
+    .after {
+        margin: 10px;
+        opacity: 0.6;
+    }
+}

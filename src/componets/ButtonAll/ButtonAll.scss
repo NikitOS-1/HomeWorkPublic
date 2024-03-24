@@ -1,0 +1,23 @@
+.btn {
+    border: 1px solid white;
+    background-color: transparent;
+    padding: 10px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+        font-family: 'Nunito', sans-serif;
+        color: white;
+        font-size: 17px;
+        text-decoration: none;
+    }
+
+
+    &:hover {
+        background-color: rgba(20, 19, 40, 0.746);
+        border: 1px solid rgb(20, 19, 40, 0.666);
+        transition: 0.3s;
+    }
+}
